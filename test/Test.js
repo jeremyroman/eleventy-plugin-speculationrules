@@ -69,6 +69,20 @@ test("with a path prefix and exclusions", async t => {
     t.snapshot(index.content);
 });
 
+test("with a path prefix with stronger escaping needs", async t => {
+    // This path prefix not only contains :, a special character, but that
+    // character also needs to be further escaped to avoid being treated as a
+    // scheme separator.
+    // https://github.com/whatwg/urlpattern/issues/210
+    let eleventy = makeEleventy({
+        pathPrefix: "/zone:5/",
+        pluginOptions: {exclude: ["/dynamic/*"]},
+    });
+    let json = await eleventy.toJSON();
+    let index = json.find(p => p.url === '/');
+    t.snapshot(index.content);
+});
+
 test("with prerender", async t => {
     let eleventy = makeEleventy({
         pluginOptions: {action: "prerender"}

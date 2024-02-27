@@ -35,6 +35,9 @@ module.exports = function(eleventyConfig, options = {}) {
     // In the unlikely event it has a special URL pattern character, escape it.
     let root = eleventyConfig.getFilter("url")("/", eleventyConfig.pathPrefix);
     let escapedRoot = root.replaceAll(/[{}()*?+:]/g, "\\$&");
+    if (/[:?#]/.test(escapedRoot)) {
+        escapedRoot = `{${escapedRoot.slice(0, -1)}}/`;
+    }
     let condition = {href_matches: escapedRoot + "*"};
     if (exclude.length !== 0) {
         let excludePatterns = exclude.map(e => e.replace(/^\/(?!\/)/, escapedRoot));
