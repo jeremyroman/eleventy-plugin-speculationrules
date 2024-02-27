@@ -1,0 +1,22 @@
+{
+  "name": "eleventy-plugin-speculationrules",
+  "version": "1.0.0",
+  "description": "Simple default speculation rules for eleventy sites.",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "npx ava"
+  },
+  "keywords": [
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": "Jeremy Roman",
+  "license": "Apache-2.0",
+  "11ty": {
+    "compatibility": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "ava": "^5.3.1"
+  }
+}
